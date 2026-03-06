@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en" class="bg-slate-50">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GitHub Issues Tracker</title>
+
+    <!-- font awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- tailwind + daisyui  -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body>
+    <div class="container max-w-sm mx-auto m-30">
+      <fieldset
+        class="fieldset bg-white border-base-300 rounded-box w-sm border p-4"
+      >
+        <div class="mb-5 mx-auto">
+          <img src="./assets/github-logo.png" alt="" />
+        </div>
+        <h1 class="text-center font-bold text-xl">GitHub Issues Tracker</h1>
+        <p class="text-center mb-5">Sign in to manage your issues</p>
+
+        <!-- <legend class="fieldset-legend">Login</legend> -->
+
+        <label class="label text-black font-semibold">Username</label>
+        <input
+          id="username-input"
+          type="text"
+          class="input"
+          placeholder="Enter Username"
+        />
+        <p class="text-purple-600">Default: admin</p>
+
+        <label class="label text-black font-semibold">Password</label>
+        <input
+          id="password-input"
+          type="password"
+          class="input"
+          placeholder="Enter Password"
+        />
+        <p class="text-purple-600">Default: admin123</p>
+
+        <button class="btn btn-primary mt-4" id="signin-btn">Sign In</button>
+        <br />
+        <p class="text-center">OR</p>
+        <br />
+        <p class="text-center">Demo Credentials:</p>
+        <div class="mx-auto bg-gray-100 w-11/12 p-5 text-center">
+          <p><span>Username:</span> admin</p>
+          <p><span>Password:</span> admin123</p>
+        </div>
+      </fieldset>
+    </div>
+
+    <script src="./script/login.js"></script>
+  </body>
+</html>
