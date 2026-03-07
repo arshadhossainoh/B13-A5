@@ -14,7 +14,7 @@ document.getElementById("signin-btn").addEventListener("click", function () {
   ) {
     //3.1- if true >alert > homepage
     alert("login success !");
-    window.location.assign("/home.html");
+    window.location.assign("/mainPage.html");
     usernameInput.value = "";
   }
 

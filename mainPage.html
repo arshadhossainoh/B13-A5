@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Main Page</title>
+    <!-- font awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- tailwind + daisyui  -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body>
+    <!-- <header class="h-10 flex justify-between items-center bg-white shadow-sm">
+      <div class="flex items-center px-10 py-5">
+        <img class="w-[15%]" src="./assets/github-logo.png" alt="" />
+        <p>GitHub Issues Tracker</p>
+      </div>
+      <div class="px-10 py-5">
+        <input type="text" placeholder="Search issues" />
+        <button>+New Issues</button>
+      </div> -->
+    <!-- </header> -->
+    <header class="container mx-auto mt-5">
+      <nav class="flex justify-between">
+        <div>
+          <h2 class="font-bold">All Issues</h2>
+          <br />
+          <div>
+            <button class="btn btn-primary">All</button>
+            <button class="btn btn-soft">Open</button>
+            <button class="btn btn-soft">Closed</button>
+          </div>
+        </div>
+        <div>
+          <input type="text" placeholder="Search issues" />
+          <button>Search</button>
+        </div>
+      </nav>
+    </header>
+
+    <section
+      class="container mx-auto mt-5 flex justify-between p-2 border border-gray-100"
+    >
+      <div class="left-side flex justify-between items-center gap-2">
+        <div>
+          <img src="./assets/Aperture.png" alt="" />
+        </div>
+        <div>
+          <h2 class="font-bold">50 Issues</h2>
+          <p>Track and manage your project issues</p>
+        </div>
+      </div>
+      <div class="right-side flex justify-between gap-2">
+        <p>&#128994; Open</p>
+        <p>&#128995; Closed</p>
+      </div>
+    </section>
+  </body>
+</html>
