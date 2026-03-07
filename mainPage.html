@@ -33,7 +33,7 @@
     <!-- </header> -->
     <header class="container mx-auto mt-5">
       <nav class="flex justify-between">
-        <div>
+        <div class="">
           <h2 class="font-bold">All Issues</h2>
           <br />
           <div>
@@ -50,14 +50,14 @@
     </header>
 
     <section
-      class="container mx-auto mt-5 flex justify-between p-2 border border-gray-100"
+      class="container mx-auto mt-5 flex justify-between p-2 border border-gray-100 mb-5"
     >
       <div class="left-side flex justify-between items-center gap-2">
         <div>
           <img src="./assets/Aperture.png" alt="" />
         </div>
         <div>
-          <h2 class="font-bold">50 Issues</h2>
+          <h2 class="font-bold"><span id="count-issue">0</span> Issues</h2>
           <p>Track and manage your project issues</p>
         </div>
       </div>
@@ -66,5 +66,16 @@
         <p>&#128995; Closed</p>
       </div>
     </section>
+
+    <!-- card section -->
+
+    <section class="container mx-auto p-5 bg-white shadow-md">
+      <div
+        id="cardContainer"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5"
+      ></div>
+    </section>
+
+    <script src="./script/mainpage.js"></script>
   </body>
 </html>
