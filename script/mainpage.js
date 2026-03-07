@@ -1,6 +1,7 @@
 const countIssue = document.getElementById("count-issue");
 
 const cardContainer = document.getElementById("cardContainer");
+const allBtn = document.getElementById("all-btn");
 
 async function loadAllIssues() {
   const res = await fetch(
@@ -33,7 +34,8 @@ function displayAllIssues(issues) {
 
   issues.forEach((issue) => {
     const issueCard = document.createElement("div");
-    issueCard.className = "card bg-white p-5 shadow-md space-y-3";
+    issueCard.className =
+      "card bg-white p-5 shadow-md space-y-3 hover:cursor-pointer";
     issueCard.innerHTML = `
   
           <!-- card top part  -->
@@ -47,8 +49,8 @@ function displayAllIssues(issues) {
             <p class="pb-3">
               ${issue.description}
             </p>
-            <button>${issue.labels[0]}</button>
-            <button class="pl-2">${issue.labels.length === 2 ? issue.labels[1] : ""}</button>
+            <button class="bg-yellow-200">${issue.labels[0]}</button>
+            <button class="pl-2 bg-yellow-200">${issue.labels.length === 2 ? issue.labels[1] : ""}</button>
           </div>
           <hr class="text-gray-300" />
           <!-- card bottom part  -->
@@ -59,10 +61,23 @@ function displayAllIssues(issues) {
             <p>Assignee: ${issue.assignee} &nbsp; &nbsp; updated: ${issue.updatedAt} </p>
           
            </div>
-        
+      
     `;
     cardContainer.appendChild(issueCard);
   });
 }
 
+allBtn.addEventListener("click", () => {
+  const everyBtns = document.querySelectorAll(".btn, #all-btn");
+  // console.log(everyBtns);
+  everyBtns.forEach((btn) => {
+    btn.classList.remove("btn-primary");
+    btn.classList.add("btn-soft");
+  });
+  allBtn.classList.add("btn-primary");
+  allBtn.classList.remove("btn-outline");
+});
+
 loadAllIssues();
+
+//  <p>${issue.status == "open" ? (issueCard.style.background = "green") : (issueCard.style.background = "purple")}</p>
