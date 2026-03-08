@@ -38,8 +38,8 @@
           <br />
           <div>
             <button id="all-btn" class="btn btn-primary">All</button>
-            <button class="btn">Open</button>
-            <button class="btn">Closed</button>
+            <button id="open-btn" class="btn">Open</button>
+            <button id="closed-btn" class="btn">Closed</button>
           </div>
         </div>
         <div>
@@ -67,13 +67,18 @@
       </div>
     </section>
 
-    <!-- card section -->
-
     <section class="container mx-auto p-5 bg-white shadow-md">
+      <!-- card section  -->
       <div
         id="cardContainer"
         class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5"
       ></div>
+
+      <!-- open card section  -->
+      <div id="openContainer"></div>
+
+      <!-- closed card section  -->
+      <div></div>
     </section>
 
     <script src="./script/mainpage.js"></script>
