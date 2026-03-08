@@ -14,14 +14,27 @@ const modalHelpWanted = document.getElementById("modal-help-wanted");
 const modalDes = document.getElementById("modal-des");
 const modalAssignee = document.getElementById("assignee");
 const modalpriority = document.getElementById("priority");
+const loadingSpinner = document.getElementById("loadingSpinner");
 let openIssues = [];
 let closedIssues = [];
 
+function showLoading() {
+  loadingSpinner.classList.remove("hidden");
+  cardContainer.innerHTML = "";
+}
+
+function hideLoading() {
+  loadingSpinner.classList.add("hidden");
+}
+
 async function loadAllIssues() {
+  showLoading();
+
   const res = await fetch(
     "https://phi-lab-server.vercel.app/api/v1/lab/issues",
   );
   const data = await res.json();
+  hideLoading();
   // console.log(data.data);
   displayAllIssues(data.data);
   countIssue.textContent = data.data.length;
@@ -233,6 +246,8 @@ async function openIssueModal(issueid) {
 openBtn.addEventListener("click", pullData);
 closedBtn.addEventListener("click", pullClosedData);
 
-loadAllIssues();
+showLoading();
+const myTimeout = setTimeout(loadAllIssues, 2000);
+// loadAllIssues();
 
 //  <p>${issue.status == "open" ? (issueCard.style.background = "green") : (issueCard.style.background = "purple")}</p>
