@@ -4,9 +4,18 @@ const cardContainer = document.getElementById("cardContainer");
 const allBtn = document.getElementById("all-btn");
 const openBtn = document.getElementById("open-btn");
 const closedBtn = document.getElementById("closed-btn");
+const issueDetailsModal = document.getElementById("issue_details_modal");
+const modalTitle = document.getElementById("modalTitle");
+const modalStatus = document.getElementById("modal-status");
+const modalAuthor = document.getElementById("modal-author");
+const modalDate = document.getElementById("modal-date");
+const modalBug = document.getElementById("modal-bug");
+const modalHelpWanted = document.getElementById("modal-help-wanted");
+const modalDes = document.getElementById("modal-des");
+const modalAssignee = document.getElementById("assignee");
+const modalpriority = document.getElementById("priority");
 let openIssues = [];
 let closedIssues = [];
-// let currentStatus = "all";
 
 async function loadAllIssues() {
   const res = await fetch(
@@ -46,11 +55,11 @@ function displayAllIssues(issues) {
           <!-- card top part  -->
           <div class="flex justify-between">
             <img class="" src="./assets/Open-Status.png" alt="" />
-            <button class="bg-[#FEECEC] text-red-400 p-2">HIGH</button>
+            <button class="bg-[#FEECEC]  p-2">${issue.priority}</button>
           </div>
           <!-- card middle part  -->
-          <div>
-            <h3 class="font-bold">${issue.title}</h3>
+          <div onclick="openIssueModal(${issue.id})">
+            <h3 class="font-bold" >${issue.title}</h3>
             <p class="pb-3">
               ${issue.description}
             </p>
@@ -71,26 +80,6 @@ function displayAllIssues(issues) {
     cardContainer.appendChild(issueCard);
   });
 }
-
-// function toggleBtn(id) {
-//   // console.log(id);
-//   // adding gray for all
-//   allBtn.classList.add("bg-gray-300", "text-black");
-//   openBtn.classList.add("bg-gray-300", "text-black");
-//   closedBtn.classList.add("bg-gray-300", "text-black");
-
-//   // remove btns previous colors
-
-//   allBtn.classList.remove("bg-blue-600", "text-white");
-//   openBtn.classList.remove("bg-white", "text-black");
-//   closedBtn.classList.remove("bg-white", "text-black");
-
-//   const selected = document.getElementById(id);
-//   currentStatus = id;
-
-//   selected.classList.remove("bg-gray-300", "text-black");
-//   selected.classList.add("bg-blue-600", "text-black");
-// }
 
 async function pullData() {
   const res = await fetch(
@@ -116,18 +105,6 @@ async function pullClosedData() {
   displayClosed(...closedIssues);
 }
 
-// openBtn.addEventListener("click", async () => {
-//   // console.log("open btn clicked");
-//   const res = await fetch(
-//     "https://phi-lab-server.vercel.app/api/v1/lab/issues",
-//   );
-//   const data = await res.json();
-//   const allIssues = data.data;
-//   const openStatus = allIssues.filter((issue) => issue.status == "open");
-//   openIssues.push(openStatus);
-//   displayOpen(openIssues);
-// });
-
 function displayOpen(issues) {
   console.log(issues);
   cardContainer.innerHTML = "";
@@ -140,7 +117,7 @@ function displayOpen(issues) {
           <!-- card top part  -->
           <div class="flex justify-between">
             <img class="" src="./assets/Open-Status.png" alt="" />
-            <button class="bg-[#FEECEC] text-red-400 p-2">HIGH</button>
+            <button class="bg-[#FEECEC]  p-2">${issue.priority}</button>
           </div>
           <!-- card middle part  -->
           <div>
@@ -180,7 +157,7 @@ function displayClosed(issues) {
           <!-- card top part  -->
           <div class="flex justify-between">
             <img class="" src="./assets/Open-Status.png" alt="" />
-            <button class="bg-[#FEECEC] text-red-400 p-2">HIGH</button>
+            <button class="bg-[#FEECEC]  p-2">${issue.priority}</button>
           </div>
           <!-- card middle part  -->
           <div>
@@ -206,6 +183,49 @@ function displayClosed(issues) {
     cardContainer.appendChild(issueCard);
   });
   countIssue.textContent = closedIssues[0].length;
+}
+
+function toggleBtns(id) {
+  const btns = [allBtn, openBtn, closedBtn];
+  for (let btn of btns) {
+    btn.classList.remove("btn-primary");
+    btn.classList.add("btn-soft");
+  }
+  if (id == "all-btn") {
+    allBtn.classList.remove("btn-soft");
+    allBtn.classList.add("btn-primary");
+    loadAllIssues();
+  } else if (id == "open-btn") {
+    openBtn.classList.remove("btn-soft");
+    openBtn.classList.add("btn-primary");
+    // allBtn.classList.remove("btn-primary");
+    // closedBtn.classList.add("btn-soft");
+  } else {
+    closedBtn.classList.remove("btn-soft");
+    closedBtn.classList.add("btn-primary");
+    // openBtn.classList.remove("btn-primary");
+    // allBtn.classList.add("btn-soft");
+  }
+}
+
+async function openIssueModal(issueid) {
+  console.log(issueid);
+  const res = await fetch(
+    `https://phi-lab-server.vercel.app/api/v1/lab/issue/${issueid}`,
+  );
+  const data = await res.json();
+  const issueDetails = data.data;
+  // console.log(data.data);
+  issueDetailsModal.showModal();
+  modalTitle.textContent = issueDetails.title;
+  modalStatus.textContent = issueDetails.status;
+  modalAuthor.textContent = issueDetails.author;
+  modalDate.textContent = issueDetails.createdAt;
+  modalBug.textContent = issueDetails.labels?.[0];
+  modalHelpWanted.textContent = issueDetails.labels?.[1];
+  modalDes.textContent = issueDetails.description;
+  modalAssignee.textContent = issueDetails.assignee;
+  modalpriority.textContent = issueDetails.priority;
 }
 
 openBtn.addEventListener("click", pullData);

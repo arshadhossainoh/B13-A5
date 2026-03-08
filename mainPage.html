@@ -37,9 +37,23 @@
           <h2 class="font-bold">All Issues</h2>
           <br />
           <div>
-            <button id="all-btn" class="btn btn-primary">All</button>
-            <button id="open-btn" class="btn">Open</button>
-            <button id="closed-btn" class="btn">Closed</button>
+            <button
+              onclick="toggleBtns('all-btn')"
+              id="all-btn"
+              class="btn btn-primary"
+            >
+              All
+            </button>
+            <button onclick="toggleBtns('open-btn')" id="open-btn" class="btn">
+              Open
+            </button>
+            <button
+              onclick="toggleBtns('closed-btn')"
+              id="closed-btn"
+              class="btn"
+            >
+              Closed
+            </button>
           </div>
         </div>
         <div>
@@ -80,6 +94,70 @@
       <!-- closed card section  -->
       <div></div>
     </section>
+
+    <!-- product deatails modal -->
+
+    <!-- Open the modal using ID.showModal() method -->
+
+    <dialog id="issue_details_modal" class="modal">
+      <div class="modal-box">
+        <!-- Modal Header with Close Button -->
+        <div class="flex justify-between items-start mb-4">
+          <h3 class="font-bold text-2xl text-green-700" id="modalTitle">
+            Issue Details
+          </h3>
+          <button
+            class="btn btn-sm btn-circle btn-ghost"
+            onclick="document.getElementById('issue_details_modal').close()"
+          >
+            ✕
+          </button>
+        </div>
+
+        <!-- Modal Content -->
+
+        <!-- Plant Details -->
+        <div class="space-y-3">
+          <!-- <p class="text-sm text-gray-500 mb-2">
+              <span class="font-bold">Category:</span>
+              <span id="modalCategory" class="badge badge-primary"></span>
+            </p>
+            <p class="text-sm text-gray-600 mb-4">
+              <span id="modalDescription"></span>
+            </p>
+            <div class="flex items-baseline gap-2 mb-6">
+              <span class="text-3xl font-bold text-green-600"
+                >$<span id="modalPrice">0</span></span
+              >
+            </div> -->
+
+          <p>
+            <span id="modal-status">status</span> &nbsp; Opened by:
+            <span id="modal-author">author</span> .
+            <span id="modal-date">date</span> &nbsp;
+          </p>
+          <p>
+            <span id="modal-bug" class="bg-yellow-400">bug</span> &nbsp;
+            <span id="modal-help-wanted" class="bg-yellow-400"
+              >help wanted</span
+            >
+          </p>
+          <p id="modal-des">description</p>
+          <p><span class="mr-70">Assignee</span> <span>Priority</span></p>
+          <p>
+            <span id="assignee" class="mr-70"></span>
+            <span id="priority" class="bg-violet-200"></span>
+          </p>
+        </div>
+
+        <div class="modal-action">
+          <form method="dialog">
+            <!-- if there is a button in form, it will close the modal -->
+            <button class="btn btn-primary">Close</button>
+          </form>
+        </div>
+      </div>
+    </dialog>
 
     <script src="./script/mainpage.js"></script>
   </body>
