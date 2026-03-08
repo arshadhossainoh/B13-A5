@@ -48,8 +48,9 @@ function displayAllIssues(issues) {
 
   issues.forEach((issue) => {
     const issueCard = document.createElement("div");
-    issueCard.className =
-      "card bg-white p-5 shadow-md space-y-3 hover:cursor-pointer";
+    // issueCard.className =
+    //   "card bg-white p-5 shadow-md space-y-3 hover:cursor-pointer";
+    issueCard.className = `${issue.status == "open" ? "card bg-white border-t border-green-500 p-5 shadow-md space-y-3 hover:cursor-pointer" : "card bg-white border-t border-purple-500 p-5 shadow-md space-y-3 hover:cursor-pointer"}`;
     issueCard.innerHTML = `
   
           <!-- card top part  -->
@@ -63,13 +64,14 @@ function displayAllIssues(issues) {
             <p class="pb-3">
               ${issue.description}
             </p>
+            
             <button class="bg-yellow-200">${issue.labels[0]}</button>
             <button class="pl-2 bg-yellow-200">${issue.labels.length === 2 ? issue.labels[1] : ""}</button>
           </div>
           <hr class="text-gray-300" />
           <!-- card bottom part  -->
           <div class="">
-        
+           
             <p>#${issue.id} by ${issue.author} &nbsp; &nbsp; ${issue.createdAt} </p>
              <br />
             <p>Assignee: ${issue.assignee} &nbsp; &nbsp; updated: ${issue.updatedAt} </p>
