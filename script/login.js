@@ -2,6 +2,7 @@ document.getElementById("signin-btn").addEventListener("click", function () {
   //1-get mobile number input
   const usernameInput = document.getElementById("username-input");
   const userName = usernameInput.value;
+  console.log(userName);
 
   //2-get pin input
   const passwordInput = document.getElementById("password-input");

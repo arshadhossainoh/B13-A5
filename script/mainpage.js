@@ -15,6 +15,8 @@ const modalDes = document.getElementById("modal-des");
 const modalAssignee = document.getElementById("assignee");
 const modalpriority = document.getElementById("priority");
 const loadingSpinner = document.getElementById("loadingSpinner");
+const searchInput = document.getElementById("search-input");
+const searchBtn = document.getElementById("search-btn");
 let openIssues = [];
 let closedIssues = [];
 
@@ -61,8 +63,7 @@ function displayAllIssues(issues) {
 
   issues.forEach((issue) => {
     const issueCard = document.createElement("div");
-    // issueCard.className =
-    //   "card bg-white p-5 shadow-md space-y-3 hover:cursor-pointer";
+
     issueCard.className = `${issue.status == "open" ? "card bg-white border-t border-green-500 p-5 shadow-md space-y-3 hover:cursor-pointer" : "card bg-white border-t border-purple-500 p-5 shadow-md space-y-3 hover:cursor-pointer"}`;
     issueCard.innerHTML = `
   
@@ -97,10 +98,12 @@ function displayAllIssues(issues) {
 }
 
 async function pullData() {
+  showLoading();
   const res = await fetch(
     "https://phi-lab-server.vercel.app/api/v1/lab/issues",
   );
   const data = await res.json();
+  hideLoading();
   const allIssues = data.data;
   const openStatus = allIssues.filter((issue) => issue.status == "open");
   openIssues.push(openStatus);
@@ -110,10 +113,12 @@ async function pullData() {
 }
 
 async function pullClosedData() {
+  showLoading();
   const res = await fetch(
     "https://phi-lab-server.vercel.app/api/v1/lab/issues",
   );
   const data = await res.json();
+  hideLoading();
   const allIssues = data.data;
   const closedStatus = allIssues.filter((issue) => issue.status == "closed");
   closedIssues.push(closedStatus);
@@ -134,7 +139,7 @@ function displayOpen(issues) {
             <button class="bg-[#FEECEC]  p-2">${issue.priority}</button>
           </div>
           <!-- card middle part  -->
-          <div>
+          <div onclick="openIssueModal(${issue.id})">
             <h3 class="font-bold">${issue.title}</h3>
             <p class="pb-3">
               ${issue.description}
@@ -173,7 +178,7 @@ function displayClosed(issues) {
             <button class="bg-[#FEECEC]  p-2">${issue.priority}</button>
           </div>
           <!-- card middle part  -->
-          <div>
+          <div onclick="openIssueModal(${issue.id})">
             <h3 class="font-bold">${issue.title}</h3>
             <p class="pb-3">
               ${issue.description}
