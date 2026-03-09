@@ -56,13 +56,20 @@
             </button>
           </div>
         </div>
-        <div id="search-input" class="flex gap-5 items-center">
+        <div class="flex gap-5 items-center">
           <input
+            id="search-input"
             class="w-[50%%] h-[40%]"
             type="text"
             placeholder="Search issues"
           />
-          <button id="search-btn" class="btn btn-primary">Search</button>
+          <button
+            onclick="searchInfo()"
+            id="search-btn"
+            class="btn btn-primary"
+          >
+            Search
+          </button>
         </div>
       </nav>
     </header>
